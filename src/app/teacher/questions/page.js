@@ -101,7 +101,7 @@ const Questions = () => {
       "№": index + 1,
       Вопрос: q.question,
       Ответы: q.answers.join(", "),
-      "Правильный ответ": q.answer,
+      // "Правильный ответ": q.answer,
     }));
   
     const worksheet = XLSX.utils.json_to_sheet(data);
@@ -168,15 +168,15 @@ const Questions = () => {
                   })
                 ),
                 // Правильный ответ на отдельной строке
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: `Правильный ответ: ${q.answer}`,
-                      italics: true,
-                      bold: true,
-                    }),
-                  ],
-                }),
+                // new Paragraph({
+                //   children: [
+                //     new TextRun({
+                //       text: `Правильный ответ: ${q.answer}`,
+                //       italics: true,
+                //       bold: true,
+                //     }),
+                //   ],
+                // }),
                 // Добавляем пустую строку между вопросами
                 new Paragraph({}),
               ];
@@ -216,10 +216,8 @@ const Questions = () => {
       {selectedTest && (
         <div className={styles.adminContainer}>
           <div className={styles.buttonGroup}>
-            Скачать в Excel
-            <p><Download onClick={downloadExcel} className={styles.download}></Download></p>
-            Скачать в Word
-            <p><Download onClick={downloadWord} className={styles.download}></Download></p>
+            <p onClick={downloadExcel} className={styles.submit}>Скачать в Excel</p>
+            <p onClick={downloadWord} className={styles.submit}>Скачать в Word</p>
           </div>
 
           <div className={[styles.adminSidebar, styles.adminQuestionSideBar].join(" ")}>

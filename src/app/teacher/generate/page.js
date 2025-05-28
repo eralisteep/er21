@@ -11,7 +11,7 @@ const GeneratePage = () => {
   const [selectedTest, setSelectedTest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("kazakh");
-  const [model, setModel] = useState("GPT-3.5-turbo");
+  const [model, setModel] = useState("gpt-4-turbo");
   const [numQuestions, setNumQuestions] = useState(10);
   const [description, setDescription] = useState("");
   const [quizData, setQuizData] = useState(null);
@@ -161,7 +161,7 @@ const GeneratePage = () => {
             <div>
               <p>Выберите модель:</p>
               <select value={model} className={styles.adminInput} onChange={(e) => setModel(e.target.value)}>
-                <option value="gpt-3.5-turbo">GPT-3.5-turbo</option>
+                {/* <option value="gpt-3.5-turbo">GPT-3.5-turbo</option> */}
                 <option value="gpt-4-turbo">GPT-4-turbo</option>
               </select>
             </div>
