@@ -1,0 +1,54 @@
+.testItem{
+    cursor: pointer;
+}
+
+.container {
+    height: calc(100vh - 90px);
+}
+
+.inputGroupContainer {
+    display: flex;
+    gap: 16px; /* Расстояние между input-ами */
+    align-items: start; /* Выравнивание по вертикали */
+}
+  
+.inputGroupContainer label {
+    flex-shrink: 0; /* Фиксированная ширина для метки */
+}
+  
+.inputGroupContainer input {
+    flex-grow: 1; /* Растягиваем input на оставшееся пространство */
+}
+.inputGroup {
+    display: flex;
+    flex-direction: column; /* Располагаем элементы вертикально */
+    align-items: flex-start; /* Выравниваем элементы по началу */
+    margin-bottom: 16px; /* Отступ между группами */
+  }
+  
+.inputGroup label {
+    margin-bottom: 4px; /* Отступ между меткой и полем ввода */
+    font-weight: bold; /* Выделяем метку */
+  }
+  
+.inputGroup input {
+    width: 100%; /* Поле ввода занимает всю ширину */
+    max-width: 400px; /* Ограничиваем максимальную ширину */
+    padding: 8px; /* Внутренний отступ */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 4px; /* Скругленные углы */
+    font-size: 16px; /* Размер текста */
+  }
+.submit{
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+.submit:hover{
+    background: #0056b3;
+}

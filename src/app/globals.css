@@ -1,0 +1,113 @@
+html.light {
+  --background: #ffffff;
+  --foreground: #171717;
+  --nav-bg: #f8f8f8;
+  --nav-text: #171717;
+  --link-hover: darkgreen;
+  --container-bg: #ffffff;
+  --box-shadow: rgba(0, 0, 0, 0.1);
+  --border-color: #ddd;
+  --color-scheme: light;
+}
+
+html.dark {
+  --background: #181818;
+  --foreground: #ffffff;
+  --nav-bg: #171717;
+  --nav-text: #ededed;
+  --link-hover: lightgreen;
+  --container-bg: #1a1a1a;
+  --box-shadow: rgba(255, 255, 255, 0.1);
+  --border-color: #444;
+  --color-scheme: dark;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  transition: all 1 ease-in-out;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Навигация */
+nav {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background: var(--nav-bg);
+}
+
+a {
+  color: var(--nav-text);
+  text-decoration: none;
+  margin: 10px;
+  font-size: 25px;
+  transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover);
+  transform: scale(1.1);
+}
+
+/* Контейнер */
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+
+/* Заголовки */
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Медиа-запрос для автоматического переключения тем */
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Панель управления */
+.dashboardContainer {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px var(--box-shadow);
+  background: var(--container-bg);
+}
+
+/* Список */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#adminTestAssignedName{
+  width: 20%;
+}
