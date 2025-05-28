@@ -41,9 +41,16 @@ export async function GET(req) {
     const accessTests = snapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
       .filter((access) => {
-        // Используем локальное время без смещения
+        // Преобразуем время начала и окончания теста в UTC+5
         const startTime = new Date(`${access.date}T${access.startTime}`);
+        startTime.setHours(startTime.getHours() + 5);
+
         const endTime = new Date(`${access.date}T${access.endTime}`);
+        endTime.setHours(endTime.getHours() + 5);
+
+        // Текущее время в UTC+5
+        const now = new Date();
+        now.setHours(now.getHours() + 5);
 
         return (
           access.groupId === groupId &&
@@ -51,32 +58,6 @@ export async function GET(req) {
           now <= endTime
         );
       });
-    // // Получаем текущее время в UTC+5
-    // const now = new Date();
-    // now.setUTCHours(now.getUTCHours() + 5);
-
-    // const { searchParams } = new URL(req.url);
-    // const testId = searchParams.get("testId"); // Получаем testId из параметров запроса
-
-    // const snapshot = await db.collection("test_access").get();
-
-    // const accessTests = snapshot.docs
-    //   .map((doc) => ({ id: doc.id, ...doc.data() }))
-    //   .filter((access) => {
-    //     // Преобразуем время начала и окончания теста в UTC+5
-    //     const startTime = new Date(`${access.date}T${access.startTime}`);
-    //     startTime.setUTCHours(startTime.getUTCHours() + 5);
-
-    //     const endTime = new Date(`${access.date}T${access.endTime}`);
-    //     endTime.setUTCHours(endTime.getUTCHours() + 5);
-
-    //     return (
-    //       access.groupId === groupId &&
-    //       now >= startTime &&
-    //       now <= endTime
-    //     );
-    //   });
-
     const testIds = accessTests.map((access) => access.testId);
 
     // Загружаем тесты по testId
