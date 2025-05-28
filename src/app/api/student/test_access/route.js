@@ -30,9 +30,8 @@ export async function GET(req) {
       return NextResponse.json({ error: "У пользователя нет groupId" }, { status: 400 });
     }
 
-    // Получаем текущее время в UTC+5
+    // Получаем текущее время без смещения UTC
     const now = new Date();
-    now.setUTCHours(now.getUTCHours() + 5);
 
     const { searchParams } = new URL(req.url);
     const testId = searchParams.get("testId"); // Получаем testId из параметров запроса
@@ -42,12 +41,9 @@ export async function GET(req) {
     const accessTests = snapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
       .filter((access) => {
-        // Преобразуем время начала и окончания теста в UTC+5
+        // Используем локальное время без смещения
         const startTime = new Date(`${access.date}T${access.startTime}`);
-        startTime.setUTCHours(startTime.getUTCHours() + 5);
-
         const endTime = new Date(`${access.date}T${access.endTime}`);
-        endTime.setUTCHours(endTime.getUTCHours() + 5);
 
         return (
           access.groupId === groupId &&
@@ -55,6 +51,31 @@ export async function GET(req) {
           now <= endTime
         );
       });
+    // // Получаем текущее время в UTC+5
+    // const now = new Date();
+    // now.setUTCHours(now.getUTCHours() + 5);
+
+    // const { searchParams } = new URL(req.url);
+    // const testId = searchParams.get("testId"); // Получаем testId из параметров запроса
+
+    // const snapshot = await db.collection("test_access").get();
+
+    // const accessTests = snapshot.docs
+    //   .map((doc) => ({ id: doc.id, ...doc.data() }))
+    //   .filter((access) => {
+    //     // Преобразуем время начала и окончания теста в UTC+5
+    //     const startTime = new Date(`${access.date}T${access.startTime}`);
+    //     startTime.setUTCHours(startTime.getUTCHours() + 5);
+
+    //     const endTime = new Date(`${access.date}T${access.endTime}`);
+    //     endTime.setUTCHours(endTime.getUTCHours() + 5);
+
+    //     return (
+    //       access.groupId === groupId &&
+    //       now >= startTime &&
+    //       now <= endTime
+    //     );
+    //   });
 
     const testIds = accessTests.map((access) => access.testId);
 
