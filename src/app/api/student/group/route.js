@@ -15,8 +15,6 @@ export async function GET(req) {
 
     // Проверяем токен через Firebase Admin SDK
     const user = await admin.auth().verifyIdToken(token);
-    console.log("Проверенный пользователь:", user);
-    console.log("ID пользователя:", user.groupId)
 
     const users = await db.collection("users").get();
     const student = users.docs.map(doc => ({ id: doc.id, ...doc.data() })).find(u => u.email === user.email);
