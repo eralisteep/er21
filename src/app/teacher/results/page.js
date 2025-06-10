@@ -24,7 +24,7 @@ export default function ResultsPage() {
   const [studentResults, setStudentResults] = useState([]); // Ответы выбранного ученика
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [sortType, setSortType] = useState("lastModified");
+  const [sortType, setSortType] = useState("alphabetical");
   const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
@@ -576,9 +576,9 @@ export default function ResultsPage() {
                     onChange={(e) => setSortType(e.target.value)}
                     value={sortType}
                   >
-                    <option value="lastModified">По последнему изменению</option>
-                    <option value="correctPercentage">По проценту правильных ответов</option>
+                    {/* <option value="lastModified">По последнему изменению</option> */}
                     <option value="alphabetical">По алфавиту</option>
+                    <option value="correctPercentage">По проценту правильных ответов</option>
                   </select>
                   {sortOrder === "asc" ? (
                     <ArrowBigUp
