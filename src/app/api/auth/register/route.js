@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
+// import firebaseAdmin from "@/src/utils/firebaseAdmin"; // Импортируйте Admin SDK
 
 const FIREBASE_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 
 export async function POST(req) {
   try {
-    const { email, password } = await req.json();
+    const { email, password, role = "admin" } = await req.json();
 
-    // Запрос в Firebase REST API для создания пользователя
+    // 1. Создаём пользователя через REST API
     const { data } = await axios.post(
       `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`,
       {
@@ -17,12 +18,17 @@ export async function POST(req) {
       }
     );
 
+    // // 2. Устанавливаем кастомный claim "role" через Admin SDK
+    // await firebaseAdmin.auth().setCustomUserClaims(data.localId, { role });
+
+    // 3. Возвращаем ответ
     const res = NextResponse.json({
       uid: data.localId,
       email: data.email,
+      // role,
     });
 
-    // Сохраняем токен в куки
+    // 4. Сохраняем токен в куки
     res.cookies.set("token", data.idToken, {
       httpOnly: true,
       secure: true,

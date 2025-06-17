@@ -3,7 +3,15 @@ import firebaseAdmin from "@/src/utils/firebaseAdmin";
 
 export async function POST(req) {
   try {
-    const { token } = await req.json();
+    // 1. Пробуем взять токен из cookie
+    let token = req.cookies.get("token")?.value;
+
+    // 2. Если нет — пробуем из тела запроса
+    if (!token) {
+      const { token: bodyToken } = await req.json();
+      token = bodyToken;
+    }
+
     if (!token) return NextResponse.json({ error: "No Token" }, { status: 401 });
 
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
