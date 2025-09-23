@@ -173,6 +173,7 @@ export default function Users() {
           <select name="role" value={formData.role} onChange={handleChange} className={styles.adminInput}>
             <option value="student">Студент</option>
             <option value="teacher">Преподаватель</option>
+            <option value="admin">Админ</option>
           </select>
           {formData.role === "student" && (
             <select
