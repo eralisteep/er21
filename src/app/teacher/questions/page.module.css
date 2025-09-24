@@ -1,38 +1,253 @@
-.buttonGroup {
-    transition: color 0.3s ease-in-out;
+/* Переменные для тем */
+html.light {
+  --background: #ffffff;
+  --foreground: #171717;
+  --sidebar-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --border-color: #ccc;
+  --button-bg: #007bff;
+  --button-hover-bg: #0056b3;
+  --list-hover-bg: #cfd5db;
+  --list-active-scale: 1.1;
+  --message-color: green;
 }
 
-.buttonGroup:hover {
-    background: #bcc6cf;
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --sidebar-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+  --shadow: rgba(255, 255, 255, 0.1);
+  --border-color: #444;
+  --button-bg: #0056b3;
+  --button-hover-bg: #003f7f;
+  --list-hover-bg: #3a3f44;
+  --list-active-scale: 1.05;
+  --message-color: lightgreen;
+}
+
+.adminContainer {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: calc(100vh - 150px);
+  box-shadow: 0px 4px 6px var(--shadow) !important;
+}
+
+.adminSidebar {
+  width: 30%;
+  background: var(--sidebar-bg);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 6px var(--shadow);
+}
+
+.adminSidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adminSidebarHeader div {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
 }
 
 .listItem {
-    width: 100%; /* Устанавливаем фиксированную ширину */
-    max-width: 300px; /* Ограничиваем максимальную ширину, если нужно */
-    min-width: 300px; /* Устанавливаем минимальную ширину */
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: background-color 0.3s ease; /* Плавный переход для фона */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px var(--shadow);
 }
 
-.listItem:hover {
-    background-color: #f0f0f0; /* Изменение фона при наведении */
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.adminFormContainer {
+  width: 65%;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 6px var(--shadow);
+}
+
+.adminFormContainer h3 {
+  margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adminInput {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.button {
+  background: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: var(--button-hover-bg);
+}
+
+.message {
+  margin-top: 10px;
+  color: var(--message-color);
+  font-weight: bold;
+}
+
+.listTest {
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.listTest:hover {
+  background: var(--list-hover-bg);
+}
+
+.listTest:active {
+  transform: scale(var(--list-active-scale));
+}
+
+.adminHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.adminQuestionSideBar {
+  width: 50%;
+  height: 100%;
+}
+
+.questionContainer {
+  width: 50%;
+}
+
+.listQuestion {
+  cursor: pointer;
+}
+
+.answerInputContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.answerInputContainer input {
+  width: 100%;
+}
+
+.answerInputContainer input:not([type="radio"]) {
+  width: 90%;
+}
+
+.adminAssignedSidebar {
+  width: 100%;
+}
+
+.adminTestAssignedContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.adminTestAccessList {
+  margin-top: 20px;
+}
+
+.adminTestAccessItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.generateBlock {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.textareBlock {
+  width: 65%;
+}
+
+.textareBlock textarea {
+  margin-top: 10px;
+  width: 100%;
+  height: 90%;
+}
+
+.generateBloc .inputBlock {
+  display: flex;
+  margin-top: 20px;
+}
+
+.inputBlock p {
+  margin: 10px 0;
+}
+
+.inputBlock .adminInput {
+  width: 100%;
+}
+
+.inputBlock div {
+  padding: 10px 0;
+}
+
+.inputBlock button {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.download{
+  cursor: pointer;
 }
 
 .submit{
   background: #007bff;
   color: white;
   border: none;
-  padding: 10px 15px;                                                            
+  height: 60px;
+  padding: 10px 15px;
   font-size: 16px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s;
-  align-self: center;
 }
-
 .submit:hover{
   background: #0056b3;
 }

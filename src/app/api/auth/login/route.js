@@ -24,7 +24,7 @@ export async function POST(req) {
       httpOnly: true,
       secure: true,
       sameSite: "Strict",
-      maxAge: 60 * 60 * 24 * 7, // 7 дней
+      maxAge: 60 * 60, // час
     });
 
     return NextResponse.json({ uid: data.localId, email: data.email, token: data.idToken });

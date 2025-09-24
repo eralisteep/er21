@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import styles from "@/src/app/admin.module.css";
+import styles from "@/src/app/teacher/questions/page.module.css";
 import { useAuth } from "@/src/context/authContext";
 import QuestionForm from "./questionForm";
 import Question from "./question";
@@ -217,7 +217,7 @@ const Questions = () => {
         <div className={styles.adminContainer}>
           <div className={styles.buttonGroup}>
             <p onClick={downloadExcel} className={styles.submit}>Скачать в Excel</p>
-            <p onClick={downloadWord} className={styles.submit}>Скачать в Word</p>
+            <p onClick={downloadWord} className={styles.submit }>Скачать в Word</p>
           </div>
 
           <div className={[styles.adminSidebar, styles.adminQuestionSideBar].join(" ")}>

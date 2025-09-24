@@ -113,6 +113,7 @@ export default function Users() {
             <option value="">Все роли</option>
             <option value="teacher">Преподаватели</option>
             <option value="student">Студенты</option>
+            <option value="admin">Админы</option>
           </select>
           {filterRole === "student" && (
             <select onChange={(e) => setFilterGroup(e.target.value)} className={styles.adminInput}>
@@ -161,6 +162,7 @@ export default function Users() {
             className={styles.adminInput}
             required
           />
+          {mode === "append" && (
           <input
             type="password"
             name="password"
@@ -170,6 +172,7 @@ export default function Users() {
             className={styles.adminInput}
             required
           />
+          )}
           <select name="role" value={formData.role} onChange={handleChange} className={styles.adminInput}>
             <option value="student">Студент</option>
             <option value="teacher">Преподаватель</option>
