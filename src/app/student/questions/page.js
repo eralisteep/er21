@@ -77,8 +77,10 @@ function QuestionsContent() {
       }));
 
       setQuestions(shuffleArray(shuffledQuestions)); // Перемешиваем вопросы
+      console.log(shuffledQuestions);
     } catch (error) {
       setError("Не удалось загрузить вопросы.");
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -115,9 +117,9 @@ function QuestionsContent() {
       alert("Данные теста или доступ к тесту не загружены.");
       return;
     }
-
     const results = questions.map((question, index) => ({
       questionId: question.id,
+      type: question.type,
       question: question.question,
       answers: question.answers,
       answer: answers[index],
@@ -153,49 +155,98 @@ function QuestionsContent() {
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>
-        Вопрос {currentQuestionIndex + 1} из {questions.length}
-      </h2>
-      <p className={styles.question}>{currentQuestion.question}</p>
-      <ul className={styles.answers}>
-        {currentQuestion.answers.map((answer, index) => (
-          <li
-            key={index}
-            className={`${styles.answer} ${answers[currentQuestionIndex] === answer ? styles.selected : ""}`}
-            onClick={() => handleAnswerSelect(answer)}
-            style={{
-              fontWeight: answers[currentQuestionIndex] === answer ? "bold" : "normal",
-            }}
-          >
-            {answer}
-          </li>
-        ))}
-      </ul>
-      <div className={styles.navigationButtons}>
-        <CircleArrowLeft
-          className={styles.button}
-          onClick={handlePreviousQuestion}
-          disabled={currentQuestionIndex === 0}
-        />
-        {currentQuestionIndex < questions.length - 1 ? (
-          <CircleArrowRight
+  let questionBlock = null;
+  if (currentQuestion.type == null || currentQuestion.type == undefined || currentQuestion.type == "choice") {
+    questionBlock = (
+      <div className={styles.container}>
+        <h2 className={styles.title}>
+          Вопрос {currentQuestionIndex + 1} из {questions.length}
+          <p><i>Тип вопроса: Выбор</i></p>
+        </h2>
+        <p className={styles.question}>{currentQuestion.question}</p>
+        <ul className={styles.answers}>
+          {currentQuestion.answers.map((answer, index) => (
+            <li
+              key={index}
+              className={`${styles.answer} ${answers[currentQuestionIndex] === answer ? styles.selected : ""}`}
+              onClick={() => handleAnswerSelect(answer)}
+              style={{
+                fontWeight: answers[currentQuestionIndex] === answer ? "bold" : "normal",
+              }}
+            >
+              {answer}
+            </li>
+          ))}
+        </ul>
+        <div className={styles.navigationButtons}>
+          <CircleArrowLeft
             className={styles.button}
-            onClick={handleNextQuestion}
-            disabled={!answers[currentQuestionIndex]}
+            onClick={handlePreviousQuestion}
+            disabled={currentQuestionIndex === 0}
           />
-        ) : (
-          <button
-            className='submit'
-            onClick={handleFinishTest}
-            disabled={!answers[currentQuestionIndex]}
-          >
-            Завершить тест
-          </button>
-        )}
+          {currentQuestionIndex < questions.length - 1 ? (
+            <CircleArrowRight
+              className={styles.button}
+              onClick={handleNextQuestion}
+              disabled={!answers[currentQuestionIndex]}
+            />
+          ) : (
+            <button
+              className='submit'
+              onClick={handleFinishTest}
+              disabled={!answers[currentQuestionIndex]}
+            >
+              Завершить тест
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    );
+  }
+  // Ввод текста / короткий ответ
+  if (currentQuestion.type == "text") {
+    questionBlock = (
+      <div className={styles.container}>
+        <h2 className={styles.title}>
+          Вопрос {currentQuestionIndex + 1} из {questions.length}
+          <p><i>Тип вопроса: {currentQuestion.type}</i></p>
+        </h2>
+        <p className={styles.question}>{currentQuestion.question}</p>
+        <input 
+          type="text"
+          onChange={(e) => handleAnswerSelect(e.target.value)}
+        ></input>
+        <div className={styles.navigationButtons}>
+          <CircleArrowLeft
+            className={styles.button}
+            onClick={handlePreviousQuestion}
+            disabled={currentQuestionIndex === 0}
+          />
+          {currentQuestionIndex < questions.length - 1 ? (
+            <CircleArrowRight
+              className={styles.button}
+              onClick={handleNextQuestion}
+              disabled={!answers[currentQuestionIndex]}
+            />
+          ) : (
+            <button
+              className='submit'
+              onClick={handleFinishTest}
+              disabled={!answers[currentQuestionIndex]}
+            >
+              Завершить тест
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+
+  return (
+    <>
+      {questionBlock}
+    </>
   );
 }
 //vgbbgf

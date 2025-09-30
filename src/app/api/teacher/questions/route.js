@@ -57,22 +57,43 @@ export async function GET(req) {
 // Добавление нового вопроса (POST)
 export async function POST(req) {
   try {
-    const { question, answer, answers, testId } = await req.json();
+    const { question, answer, answers, testId, type } = await req.json();
 
-    // Проверяем, что все обязательные поля заполнены
-    if (!question || !answer || !answers || !testId) {
-      return NextResponse.json({ error: "Все поля (question, answer, answers, testId) обязательны" }, { status: 400 });
+    if (type == null || type == undefined || type == "choice") {
+      // Проверяем, что все обязательные поля заполнены
+      if (!question || !answer || !answers || !testId) {
+        return NextResponse.json({ error: "Все поля (question, answer, answers, testId) обязательны" }, { status: 400 });
+      }
+
+      // Добавляем новый вопрос в Firestore
+      const newQuestion = await db.collection("Questions").add({
+        question,
+        answer,
+        answers, // Используем поле answers вместо options
+        testId,  // Связываем вопрос с тестом
+        type: "choice", // Устанавливаем тип вопроса как "choice"
+      });
+
+      return NextResponse.json({ message: "Вопрос добавлен", id: newQuestion.id });
+    } 
+    // Ввод текста / короткий ответ
+    if (type == "text"){
+      // Проверяем, что все обязательные поля заполнены
+      if (!question || !answer || !testId) {
+        return NextResponse.json({ error: "Все поля (question, answer, testId) обязательны" }, { status: 400 });
+      }
+
+      // Добавляем новый вопрос в Firestore
+      const newQuestion = await db.collection("Questions").add({
+        question,
+        answer,
+        testId,  // Связываем вопрос с тестом
+        type,
+      });
+
+      return NextResponse.json({ message: "Вопрос добавлен", id: newQuestion.id });
     }
 
-    // Добавляем новый вопрос в Firestore
-    const newQuestion = await db.collection("Questions").add({
-      question,
-      answer,
-      answers, // Используем поле answers вместо options
-      testId,  // Связываем вопрос с тестом
-    });
-
-    return NextResponse.json({ message: "Вопрос добавлен", id: newQuestion.id });
   } catch (error) {
     return NextResponse.json({ error: "Ошибка добавления: " + error.message }, { status: 500 });
   }

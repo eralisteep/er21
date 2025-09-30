@@ -6,12 +6,7 @@ const db = admin.firestore(); // Firestore через Admin SDK
 // Обновление вопроса (PUT)
 export async function PUT(req, { params }) {
   try {
-    const { question, answer, answers, testId } = await req.json();
-
-    // Проверяем, что все обязательные поля заполнены
-    if (!question || !answer || !answers || !testId) {
-      return NextResponse.json({ error: "Все поля (question, answer, answers, testId) обязательны" }, { status: 400 });
-    }
+    const { question, answer, answers, testId, type } = await req.json();
 
     // Обновляем вопрос в Firestore
     await db.collection("Questions").doc(params.id).update({
@@ -19,6 +14,7 @@ export async function PUT(req, { params }) {
       answer,
       answers,
       testId,
+      type,
     });
 
     return NextResponse.json({ message: "Вопрос обновлен" });
