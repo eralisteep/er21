@@ -754,11 +754,16 @@ export default function ResultsPage() {
                   {studentResults.map((result, index) => (
                     <li key={index} className={styles.resultItem}>
                       <p>
-                        <strong>Вопрос:</strong> {result.question}
+                        <strong>Тип:</strong> {result.type}
                       </p>
                       <p>
-                        <strong>Ответы:</strong> {Array.isArray(result.answers) ? result.answers.join(", ") : "Нет данных"}
+                        <strong>Вопрос:</strong> {result.question}
                       </p>
+                      {Array.isArray(result.answers) ?
+                      <p>
+                        <strong>Ответы:</strong> {result.answers.join(", ")}
+                      </p>
+                       : null}
                       <p
                         style={{
                           color: result.IsRight === 100 ? "green" : "red", // Условное изменение цвета текста

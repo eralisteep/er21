@@ -71,13 +71,13 @@ function QuestionsContent() {
       const data = await response.json();
 
       // Перемешиваем вопросы и их ответы
-      const shuffledQuestions = data.map((question) => ({
-        ...question,
-        answers: shuffleArray(question.answers), // Перемешиваем ответы
-      }));
+      const shuffledQuestions = data.map((question) =>
+        question.type == null || question.type === "choice"
+          ? { ...question, answers: shuffleArray(question.answers) }
+          : { ...question }
+      );
 
       setQuestions(shuffleArray(shuffledQuestions)); // Перемешиваем вопросы
-      console.log(shuffledQuestions);
     } catch (error) {
       setError("Не удалось загрузить вопросы.");
       console.error(error);
