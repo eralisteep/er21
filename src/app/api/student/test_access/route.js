@@ -41,22 +41,8 @@ export async function GET(req) {
     const accessTests = snapshot.docs
       .map((doc) => ({ id: doc.id, ...doc.data() }))
       .filter((access) => {
-        // Преобразуем время начала и окончания теста в UTC+5
-        const startTime = new Date(`${access.date}T${access.startTime}`);
-        startTime.setHours(startTime.getHours() + 5);
-
-        const endTime = new Date(`${access.date}T${access.endTime}`);
-        endTime.setHours(endTime.getHours() + 5);
-
-        // Текущее время в UTC+5
-        const now = new Date();
-        now.setHours(now.getHours() + 5);
-
-        return (
-          access.groupId === groupId &&
-          now >= startTime &&
-          now <= endTime
-        );
+        // Фильтруем только по дате (игнорируем время)
+        return access.groupId === groupId && access.date === now.toISOString().slice(0, 10);
       });
     const testIds = accessTests.map((access) => access.testId);
 

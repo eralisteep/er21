@@ -14,12 +14,16 @@ const Question = ({ selectedQuestion }) => {
         }}
       >
       <h3>{selectedQuestion.question}</h3>
-      <h4>Тип вопроса: {selectedQuestion.type}</h4>
       {selectedQuestion.type === 'text' ? (
-        <p><i>Правильный ответ: {selectedQuestion.answer}</i></p>
+        <>
+          <h4>Тип вопроса: Напиши правильный ответ</h4>
+          <p><i>Правильный ответ: {selectedQuestion.answer}</i></p>
+        </>
       ) : null}
       {selectedQuestion.type === 'choice' || selectedQuestion.type === undefined || selectedQuestion.type === null ? (
-      <ul>
+      <>
+        <h4>Тип вопроса: Выбор правильного ответа</h4>
+        <ul>
         {selectedQuestion.answers.map((answer, index) => (
           <li
             key={index}
@@ -30,7 +34,9 @@ const Question = ({ selectedQuestion }) => {
             {answer}
           </li>
         ))}
-      </ul>
+        </ul>
+      </>
+
     ) : null}
     </div>
   );

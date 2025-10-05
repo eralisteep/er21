@@ -24,7 +24,7 @@ export async function POST(req) {
       httpOnly: true,
       secure: true,
       sameSite: "Strict",
-      maxAge: 60 * 60, // час
+      maxAge: 60 * 60, // час, лимит firebase токена
     });
 
     return NextResponse.json({ uid: data.localId, email: data.email, token: data.idToken });

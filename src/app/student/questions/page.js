@@ -214,7 +214,7 @@ function QuestionsContent() {
         <p className={styles.question}>{currentQuestion.question}</p>
         <input 
           type="text"
-          onChange={(e) => handleAnswerSelect(e.target.value)}
+          onChange={(e) => handleAnswerSelect((e.target.value).toLocaleLowerCase())}
         ></input>
         <div className={styles.navigationButtons}>
           <CircleArrowLeft

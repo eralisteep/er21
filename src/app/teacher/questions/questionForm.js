@@ -87,7 +87,7 @@ const QuestionForm = ({ mode, selectedQuestion, testId, onQuestionSaved }) => {
           <input
             type="text"
             name="answer"
-            value={formData.answer}
+            value={formData.answer.toLocaleLowerCase()}
             onChange={handleInputChange}
             placeholder="Правильный ответ"
             className={styles.adminInput}
