@@ -12,7 +12,7 @@ const GeneratePage = () => {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("kazakh");
   const [model, setModel] = useState("gpt-4-turbo");
-  const [numQuestions, setNumQuestions] = useState(10);
+  const [numQuestions, setNumQuestions] = useState(3);
   const [description, setDescription] = useState("");
   const [quizData, setQuizData] = useState(null);
   const [error, setError] = useState("");
@@ -142,7 +142,7 @@ const GeneratePage = () => {
               <input
                 type="number"
                 value={numQuestions}
-                onChange={(e) => setNumQuestions(parseInt(e.target.value, 10))}
+                onChange={(e) => setNumQuestions(parseInt(e.target.value, 3))}
                 placeholder="Количество вопросов"
                 className={styles.adminInput}
                 min="1"
