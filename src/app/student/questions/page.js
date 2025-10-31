@@ -161,7 +161,7 @@ function QuestionsContent() {
       <div className={styles.container}>
         <h2 className={styles.title}>
           Вопрос {currentQuestionIndex + 1} из {questions.length}
-          <p><i>Тип вопроса: Выбор</i></p>
+          <p><i>Тип вопроса: Выбор правильного ответа</i></p>
         </h2>
         <p className={styles.question}>{currentQuestion.question}</p>
         <ul className={styles.answers}>
@@ -209,7 +209,7 @@ function QuestionsContent() {
       <div className={styles.container}>
         <h2 className={styles.title}>
           Вопрос {currentQuestionIndex + 1} из {questions.length}
-          <p><i>Тип вопроса: {currentQuestion.type}</i></p>
+          <p><i>Тип вопроса: Написать правильный ответ</i></p>
         </h2>
         <p className={styles.question}>{currentQuestion.question}</p>
         <input 
