@@ -45,7 +45,7 @@ export async function POST(req) {
     await admin.auth().setCustomUserClaims(userRecord.uid, customClaims);
 
     // Добавляем пользователя в Firestore
-    const newUser = await db.collection("users").doc(userRecord.uid).set({
+    await db.collection("users").doc(userRecord.uid).set({
       email,
       name,
       role,
