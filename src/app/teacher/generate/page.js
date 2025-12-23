@@ -11,7 +11,7 @@ const GeneratePage = () => {
   const [selectedTest, setSelectedTest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("kazakh");
-  const [model, setModel] = useState("gpt-4-turbo");
+  const [model, setModel] = useState("gpt-3.5-turbo");
   const [numQuestions, setNumQuestions] = useState(3);
   const [description, setDescription] = useState("");
   const [quizData, setQuizData] = useState(null);
@@ -142,11 +142,11 @@ const GeneratePage = () => {
               <input
                 type="number"
                 value={numQuestions}
-                onChange={(e) => setNumQuestions(parseInt(e.target.value, 3))}
+                onChange={(e) => setNumQuestions(parseInt(e.target.value))}
                 placeholder="Количество вопросов"
                 className={styles.adminInput}
                 min="1"
-                max="50"
+                max="20"
                 required
               />
             </div>
@@ -161,8 +161,8 @@ const GeneratePage = () => {
             <div>
               <p>Выберите модель:</p>
               <select value={model} className={styles.adminInput} onChange={(e) => setModel(e.target.value)}>
-                {/* <option value="gpt-3.5-turbo">GPT-3.5-turbo</option> */}
-                <option value="gpt-4-turbo">GPT-4-turbo</option>
+                <option value="gpt-3.5-turbo">GPT-3.5-turbo</option>
+                {/* <option value="gpt-4-turbo">GPT-4-turbo</option> */}
               </select>
             </div>
             <div>

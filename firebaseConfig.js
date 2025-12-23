@@ -1,6 +1,5 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -15,13 +14,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-// Инициализация Firestore и Realtime Database
-// export const db = getFirestore(app, {
-//     experimentalForceLongPolling: true,
-//     useFetchStreams: false
-//   });
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-// export const rtdb = getDatabase(app);
 
 export default app;

@@ -59,11 +59,15 @@ export default function Navbar() {
               <Link href="/admin/questions">Вопросы</Link>
             </li> */}
             <li>
+              <Link href="/admin/import">Импорт групп</Link>
+            </li>
+            <li>
               <Link href="/admin/groups">Группы</Link>
             </li>
             <li>
               <Link href="/admin/users">Пользователи</Link>
             </li>
+
           </>
         )}
         {user ? (
