@@ -14,8 +14,8 @@ export async function POST(req) {
       return Response.json({ error: "Нужно указать тему и описание" }, { status: 400 });
     }
 
-    if (finalNumQuestions < 1 || finalNumQuestions > 20) {
-      return Response.json({ error: "Число вопросов должно быть от 1 до 20" }, { status: 400 });
+    if (finalNumQuestions < 1) {
+      return Response.json({ error: "Число вопросов должно быть больше нуля" }, { status: 400 });
     }
 
     if (!OPENAI_API_KEY) {

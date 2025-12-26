@@ -65,7 +65,7 @@ const GeneratePage = () => {
           language,
         }),
       });
-      if (!response.ok) throw new Error("Ошибка при генерации викторины.");
+      if (!response.ok) throw new Error(response.json());
       const data = await response.json();
 
       // Преобразуем данные в нужный формат
@@ -146,7 +146,6 @@ const GeneratePage = () => {
                 placeholder="Количество вопросов"
                 className={styles.adminInput}
                 min="1"
-                max="20"
                 required
               />
             </div>

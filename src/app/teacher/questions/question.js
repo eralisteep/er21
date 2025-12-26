@@ -10,7 +10,7 @@ const Question = ({ selectedQuestion }) => {
     <div 
         className={styles.questionDetails}
         style={{
-            width: "647px" // Выделяем правильный ответ
+            width: "647px", // Выделяем правильный ответ
         }}
       >
       <h3>{selectedQuestion.question}</h3>
