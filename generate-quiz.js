@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 
 // Ваш ключ OpenAI API
-const OPENAI_API_KEY = `${process.env.NEXT_PUBLIC_CHAT_API_KEY}`;
+const OPENAI_API_KEY = `${process.env.CHAT_API_KEY}`;
 
 class AI_API {
   async generatequiz(req, res) {
