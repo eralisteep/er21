@@ -10,7 +10,7 @@ const GeneratePage = () => {
   const [tests, setTests] = useState([]);
   const [selectedTest, setSelectedTest] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [language, setLanguage] = useState("kazakh");
+  const [language, setLanguage] = useState("Казахский");
   const [model, setModel] = useState("gpt-3.5-turbo");
   const [numQuestions, setNumQuestions] = useState(3);
   const [description, setDescription] = useState("");
@@ -65,7 +65,11 @@ const GeneratePage = () => {
           language,
         }),
       });
-      if (!response.ok) throw new Error(response.json());
+      if (!response.ok) {
+        const errBody = await response.json().catch(() => null);
+        const errMsg = errBody?.message || (errBody && JSON.stringify(errBody)) || response.statusText || "Ошибка при генерации";
+        throw new Error(errMsg);
+      }
       const data = await response.json();
 
       // Преобразуем данные в нужный формат
@@ -79,8 +83,8 @@ const GeneratePage = () => {
 
       setQuizData(formattedQuestions);
     } catch (error) {
-      console.error("Ошибка при генерации викторины:", error.message);
-      setError("Не удалось сгенерировать викторину.");
+      console.error("Ошибка при генерации викторины:", error);
+      setError(error?.message || String(error) || "Не удалось сгенерировать викторину.");
     } finally {
       setLoading(false);
     }
@@ -152,8 +156,8 @@ const GeneratePage = () => {
             <div>
               <p>Выберите язык:</p>
               <select value={language} className={styles.adminInput} onChange={(e) => setLanguage(e.target.value)}>
-                <option value="kazakh">Казахский</option>
-                <option value="russian">Русский</option>
+                <option value="Казахский">Казахский</option>
+                <option value="Русский">Русский</option>
                 <option value="english">Английский</option>
               </select>
             </div>

@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 // import firebaseAdmin from "@/src/utils/firebaseAdmin"; // Импортируйте Admin SDK
-console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
 const FIREBASE_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 
 export async function POST(req) {
