@@ -20,7 +20,7 @@ const TestManager = () => {
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
   const [isCorrect, setIsCorrect] = useState(false);
   const [title, setTitle] = useState("");
-  const [model, setModel] = useState("gpt-4-turbo");
+  // const [model, setModel] = useState("gpt-4-turbo");
   const [language, setLanguage] = useState("kaz");
   const [numQuestions, setNumQuestions] = useState("");
   const [description, setDescription] = useState("");
@@ -75,7 +75,7 @@ const TestManager = () => {
         title,
         description,
         numQuestions,
-        model,
+        // model,
         language,
       });
 
@@ -293,7 +293,7 @@ const TestManager = () => {
             </select>
           </div>
 
-          <div>
+          {/* <div>
             <label htmlFor="model">Выберите модель:</label>
             <select
               id="model"
@@ -303,7 +303,7 @@ const TestManager = () => {
               <option value="gpt-4-turbo">GPT-4-turbo</option>
               <option value="gpt-3.5-turbo">GPT-3.5-turbo</option>
             </select>
-          </div>
+          </div> */}
 
           <button type="submit">Сгенерировать вопросы</button>
         </div>

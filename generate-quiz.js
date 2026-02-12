@@ -5,7 +5,7 @@ const OPENAI_API_KEY = `${process.env.CHAT_API_KEY}`;
 
 class AI_API {
   async generatequiz(req, res) {
-    const { title, description, numQuestions, model = "gpt-3.5-turbo", language = "kaz" } = req.body;
+    const { title, description, numQuestions, language = "kaz" } = req.body;
     const finalNumQuestions = numQuestions || 5;
 
     // Проверка на наличие title и description

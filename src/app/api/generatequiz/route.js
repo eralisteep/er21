@@ -4,7 +4,7 @@ export async function POST(req) {
   try {
     const body = await req.json();
     // console.log("Запрос на генерацию:", body);
-    const { selectedTest, description, numQuestions, model = "gpt-3.5-turbo", language = "kaz" } = body;
+    const { selectedTest, description, numQuestions, language = "kaz" } = body;
 
     const finalNumQuestions = numQuestions || 5;
 
