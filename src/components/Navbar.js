@@ -37,9 +37,6 @@ export default function Navbar() {
               <Link href="/teacher/quiz" prefetch={true}>Тесты</Link>
             </li>
             <li>
-              <Link href="/teacher/results" prefetch={true}>Результаты</Link>
-            </li>
-            <li>
               <Link href="/teacher/questions" prefetch={true}>Редактировать тест</Link>
             </li>
             <li>
@@ -47,6 +44,9 @@ export default function Navbar() {
             </li>
             <li>
               <Link href="/teacher/assigned" prefetch={true}>Провести тест</Link>
+            </li>
+            <li>
+              <Link href="/teacher/results" prefetch={true}>Результаты</Link>
             </li>
           </>
         )}

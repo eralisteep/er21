@@ -22,7 +22,7 @@ export async function middleware(req) {
 
   try {
     // Запрос в API для верификации токена (так как Firebase Admin нельзя использовать в middleware)
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/verify`, {
+    const response = await fetch(`${req.nextUrl.origin}/api/auth/verify`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),
