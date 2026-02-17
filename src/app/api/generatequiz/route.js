@@ -106,54 +106,54 @@ export async function POST(req) {
       return quizText.slice(start, end + 1);
     }
 
-    //2-ой запрос
-    prompt = `${quizText} .сделай это в Формат ответа (только JSON):
-{
-  "questions": [
-    {
-      "questionText": "Текст вопроса",
-      "answerText1": "Первый вариант",
-      "answerText2": "Второй вариант",
-      "answerText3": "Третий вариант",
-      "answerText4": "Четвертый вариант",
-      "isCorrect": 1/2/3/4
-    }
-  ]
-}`
+//     //2-ой запрос
+//     prompt = `${quizText} .сделай это в Формат ответа (только JSON):
+// {
+//   "questions": [
+//     {
+//       "questionText": "Текст вопроса",
+//       "answerText1": "Первый вариант",
+//       "answerText2": "Второй вариант",
+//       "answerText3": "Третий вариант",
+//       "answerText4": "Четвертый вариант",
+//       "isCorrect": 1/2/3/4
+//     }
+//   ]
+// }`
 
-     adminPrompt = `Ты помощник, который парсит данные в JSON. Всегда отвечай ЧИСТЫМ JSON БЕЗ форматирования и пояснений. Любое отклонение от структуры считается ошибкой.
-НЕ переводить имена полей.
-НЕ изменять формат.
-Ответ должен проходить JSON.parse().
-. Ты — JSON генератор. Отвечай ТОЛЬКО валидным JSON.
-Если не уверен — повтори структуру без изменений.
-`
+//      adminPrompt = `Ты помощник, который парсит данные в JSON. Всегда отвечай ЧИСТЫМ JSON БЕЗ форматирования и пояснений. Любое отклонение от структуры считается ошибкой.
+// НЕ переводить имена полей.
+// НЕ изменять формат.
+// Ответ должен проходить JSON.parse().
+// . Ты — JSON генератор. Отвечай ТОЛЬКО валидным JSON.
+// Если не уверен — повтори структуру без изменений.
+// `
 
-    response = await fetch("https://ai.collegeit.edu.kz/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.AI_KEY}`
-      },
-      body: JSON.stringify({
-        model: "hoangquan456/qwen3-nothink:8b",
-        messages: [
-            {
-                "role": "user",
-                "content": prompt
-            },
-            {
-              "role": "admin",
-              "content": adminPrompt
-            }
-        ]
-      }),
-    })
+//     response = await fetch("https://ai.collegeit.edu.kz/api/v1/chat/completions", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Authorization": `Bearer ${process.env.AI_KEY}`
+//       },
+//       body: JSON.stringify({
+//         model: "hoangquan456/qwen3-nothink:8b",
+//         messages: [
+//             {
+//                 "role": "user",
+//                 "content": prompt
+//             },
+//             {
+//               "role": "admin",
+//               "content": adminPrompt
+//             }
+//         ]
+//       }),
+//     })
 
     
-    data = await response.json()
-    quizText = data.choices[0].message.content
-    // Убираем Markdown-разметку ```json ... ```
+//     data = await response.json()
+//     quizText = data.choices[0].message.content
+//     // Убираем Markdown-разметку ```json ... ```
     let clean = cleanQuizText(quizText)
         
     let parsedData = JSON.parse(clean);
