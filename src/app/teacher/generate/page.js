@@ -12,7 +12,7 @@ const GeneratePage = () => {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("Казахский");
   // const [model, setModel] = useState("gpt-3.5-turbo");
-  const [numQuestions, setNumQuestions] = useState(3);
+  const [numQuestions, setNumQuestions] = useState(1);
   const [description, setDescription] = useState("");
   const [quizData, setQuizData] = useState(null);
   const [error, setError] = useState("");
