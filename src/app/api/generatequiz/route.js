@@ -52,7 +52,7 @@ export async function POST(req) {
         "Authorization": `Bearer ${process.env.AI_KEY}`
       },
       body: JSON.stringify({
-        model: "llama8b-Q4_K_M:latest",
+        model: "hoangquan456/qwen3-nothink:8b",
         messages: [
             {
                 "role": "user",
@@ -136,7 +136,7 @@ export async function POST(req) {
         "Authorization": `Bearer ${process.env.AI_KEY}`
       },
       body: JSON.stringify({
-        model: "llama8b-Q4_K_M:latest",
+        model: "hoangquan456/qwen3-nothink:8b",
         messages: [
             {
                 "role": "user",
