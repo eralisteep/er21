@@ -61,7 +61,7 @@ const GeneratePage = () => {
           selectedTest: selectedTest.name,
           description,
           numQuestions,
-          model,
+          // model,
           language,
         }),
       });
