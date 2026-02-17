@@ -34,7 +34,7 @@ export default function Navbar() {
         {role === "teacher" && (
           <>
             <li>
-              <Link href="/teacher/quiz" prefetch={true}>Тесты</Link>
+              <Link href="/teacher/test" prefetch={true}>Тесты</Link>
             </li>
             <li>
               <Link href="/teacher/questions" prefetch={true}>Редактировать тест</Link>
